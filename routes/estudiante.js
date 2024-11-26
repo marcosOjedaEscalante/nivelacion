@@ -1,25 +1,16 @@
 const { Router } = require('express');
+const { findAllController, findByIdController, createController, updateController, deleteByIdController } = require('../controllers/estudiante');
 
 const router = Router();
 
-router.get('', (req, res) => {
-    res.json({ msg: 'findAll' });
-});
+router.get('', findAllController);
 
-router.get('/:id', (req, res) => {
-    res.json({ msg: 'findById' });
-});
+router.get('/:id', findByIdController);
 
-router.post('', (req, res) => {
-    res.json({ msg: 'create' });
-});
+router.post('', createController);
 
-router.put('', (req, res) => {
-    res.json({ msg: 'update' });
-});
+router.put('', updateController);
 
-router.delete('/:id', (req, res) => {
-    res.json({ msg: 'deleteById' });
-});
+router.delete('/:id', deleteByIdController);
 
 module.exports = router;
