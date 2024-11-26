@@ -1,5 +1,5 @@
-const { findAll, findById, create, update, deleteById } = require("./service/estudiante");
+const Server = require("./server/server");
 
-deleteById(32).then((estudiante) => {
-    console.log(estudiante);
-});
+const server = new Server();
+
+server.listen();
