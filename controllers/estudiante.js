@@ -1,21 +1,47 @@
-const findAllController = (req, res) => {
-    res.json({ msg: 'findAll' });
+const { findAll, findById, create, update, deleteById } = require("../service/estudiante");
+
+const findAllController = async (req, res) => {
+    const respuesta = await findAll();
+    res.status(respuesta.status).json({
+        msg: respuesta.msg,
+        datos: respuesta.datos
+    });
 }
 
-const findByIdController = (req, res) => {
-    res.json({ msg: 'findById' });
+const findByIdController = async (req, res) => {
+    const { id } = req.params;
+    const respuesta = await findById(id);
+    res.status(respuesta.status).json({
+        msg: respuesta.msg,
+        datos: respuesta.datos
+    });
 }
 
-const createController = (req, res) => {
-    res.json({ msg: 'create' });
+const createController = async (req, res) => {
+    const { idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimiento, direccion, correo, telefono } = req.body;
+    const respuesta = await create(idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimiento, direccion, correo, telefono);
+    res.status(respuesta.status).json({
+        msg: respuesta.msg,
+        datos: respuesta.datos
+    });
 }
 
-const updateController = (req, res) => {
-    res.json({ msg: 'update' });
+const updateController = async (req, res) => {
+    const { idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimiento, direccion, correo, telefono } = req.body;
+    const respuesta = await update(idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimiento, direccion, correo, telefono);
+    res.status(respuesta.status).json({
+        msg: respuesta.msg,
+        datos: respuesta.datos
+    });
 }
 
-const deleteByIdController = (req, res) => {
-    res.json({ msg: 'deleteById' });
+const deleteByIdController = async (req, res) => {
+    const { id } = req.params;
+    const respuesta = await deleteById(id);
+    res.status(respuesta.status).json({
+        msg: respuesta.msg,
+        datos: respuesta.datos
+    });
 }
 
 module.exports = {
