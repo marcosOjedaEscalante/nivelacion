@@ -27,11 +27,7 @@ const findAll = async () => {
 
 const findById = async (idEstudiante) => {
     try {
-        const estudiante = await Estudiante.findOne({
-            where: {
-                idEstudiante
-            }
-        });
+        const estudiante = await Estudiante.findOne({ where: { idEstudiante } });
         if (estudiante == null) {
             return {
                 msg: `El estudiante con id ${idEstudiante} no existe`,
@@ -91,18 +87,7 @@ const update = async (idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimi
                 datos: {}
             }
         }
-        const estudianteActualizado = await Estudiante.update({
-            rutEstudiante,
-            nombreEstudiante,
-            fechaNacimiento,
-            direccion,
-            correo,
-            telefono
-        }, {
-            where: {
-                idEstudiante
-            }
-        });
+        const estudianteActualizado = await Estudiante.update({ rutEstudiante, nombreEstudiante, fechaNacimiento, direccion, correo, telefono }, { where: { idEstudiante } });
         return {
             msg: `El usuario con id ${idEstudiante} se actualizó correctamente`,
             status: 201,
@@ -120,11 +105,7 @@ const update = async (idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimi
 
 const deleteById = async (idEstudiante) => {
     try {
-        const existeId = await Estudiante.findOne({
-            where: {
-                idEstudiante
-            }
-        });
+        const existeId = await Estudiante.findOne({ where: { idEstudiante } });
         if (!existeId) {
             return {
                 msg: `El id ${idEstudiante} no existe, no puedo eliminar`,
@@ -132,11 +113,7 @@ const deleteById = async (idEstudiante) => {
                 datos: {}
             }
         }
-        const estudianteEliminado = await Estudiante.destroy({
-            where: {
-                idEstudiante
-            }
-        });
+        const estudianteEliminado = await Estudiante.destroy({ where: { idEstudiante } });
         return {
             msg: `El estudiante con id ${idEstudiante} se eliminó correctamente`,
             status: 200,
