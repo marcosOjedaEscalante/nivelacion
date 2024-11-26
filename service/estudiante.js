@@ -54,8 +54,17 @@ const findById = async (idEstudiante) => {
     }
 }
 
-const create = () => {
-
+const create = async (idEstudiante, rutEstudiante, nombreEstudiante, fechaNacimiento, direccion, correo, telefono) => {
+    const estudianteInsertado = await Estudiante.create({
+        idEstudiante,
+        rutEstudiante,
+        nombreEstudiante,
+        fechaNacimiento,
+        direccion,
+        correo,
+        telefono
+    });
+    console.log(estudianteInsertado);
 }
 
 const update = () => {
