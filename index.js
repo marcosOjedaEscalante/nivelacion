@@ -10,3 +10,6 @@ const UsuarioRol = require("./models/UsuariosRoles");
 UsuarioRol.findAll().then((usuarios) => {
     console.log(usuarios);
 });
+
+
+aaa
