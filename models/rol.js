@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../connection/connection");
+const Permiso = require("./permiso");
+const RolPermiso = require("./rolesPermisos");
 
 const Rol = sequelize.define('Rol', {
     id: {
@@ -15,6 +17,15 @@ const Rol = sequelize.define('Rol', {
     tableName: 'roles',
     timestamps: false,
     underscored: true
+});
+
+Rol.belongsToMany(Permiso, {
+    through: RolPermiso,
+    foreignKey: 'id_rol'
+});
+Permiso.belongsToMany(Rol, {
+    through: RolPermiso,
+    foreignKey: 'id_permiso'
 });
 
 module.exports = Rol;

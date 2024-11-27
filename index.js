@@ -6,10 +6,16 @@ server.listen(); */
 
 const Permiso = require("./models/permiso");
 const Rol = require("./models/rol");
-const RolPermiso = require("./models/rolesPermisos");
 const Usuario = require("./models/usuario");
-const UsuarioRol = require("./models/UsuariosRoles");
 
-Permiso.findAll().then((datos) => {
-    console.log(datos);
+Usuario.findOne({
+    where:{
+        id: 1
+    },
+    include: {
+        model: Rol,
+        include: Permiso
+    }
+}).then((datos) => {
+    console.log(datos.toJSON());
 });
